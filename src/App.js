@@ -59,32 +59,45 @@ function App() {
 
 
   return (
-    <div className="container">
+    <>
+      <header className="container-fluid bg-dark py-3 text-white mb-4">
+        <h1 className="text-white text-center mb-0">FX Rate Converter</h1>
+      </header>
 
-      {/* Rate Part */}
-      <ExchangeRateForm
-        fxRate={fxRate}
-        overrideFxRate={overrideFxRate}
-        setOverrideFxRate={setOverrideFxRate}
-      />
+      <div className="container">
+        <div className='row justify-content-center'>
+          <div class="col-sm-10 p-sm-5">
 
+            {/* Rate Part */}
+            <ExchangeRateForm
+              fxRate={fxRate}
+              overrideFxRate={overrideFxRate}
+              setOverrideFxRate={setOverrideFxRate}
+            />
 
-      {/* Exchange form */}
-      <ExchangeForm
-        handleFormSumbit={handleFormSumbit}
-        mainInputRef={mainInputRef}
-        isEuro={isEuro}
-        euroAmount={euroAmount}
-        usdAmount={usdAmount}
-        exchangeAmount={exchangeAmount}
-        handleSwitch={handleSwitch}
-      />
+            <hr />
 
 
-      {/* History Part */}
-      {history.length > 0 ? <History history={history} /> : null}
+            {/* Exchange form */}
+            <ExchangeForm
+              handleFormSumbit={handleFormSumbit}
+              mainInputRef={mainInputRef}
+              isEuro={isEuro}
+              euroAmount={euroAmount}
+              usdAmount={usdAmount}
+              exchangeAmount={exchangeAmount}
+              handleSwitch={handleSwitch}
+            />
 
-    </div>
+            <hr />
+
+            {/* History Part */}
+            {history.length > 0 ? <History history={history} /> : null}
+
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 

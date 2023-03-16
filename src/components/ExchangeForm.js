@@ -7,7 +7,7 @@ const ExchangeForm = ({ handleFormSumbit, mainInputRef, isEuro, euroAmount, usdA
         <form onSubmit={handleFormSumbit}>
             <div className="row">
                 <div className="col-sm-5">
-                    <div className="input-group mb-3">
+                    <div className="input-group mb-sm-3">
                         <span className="input-group-text">{isEuro ? '€' : '$'}</span>
                         <span className="input-group-text">{isEuro ? 'Euro' : 'USD'}</span>
                         <input type="number" className="form-control" ref={mainInputRef} value={isEuro ? euroAmount : usdAmount} onChange={exchangeAmount} />
