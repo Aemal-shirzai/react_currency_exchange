@@ -1,7 +1,9 @@
 import './App.css';
-import exchangeIcon from './assets/exchange.png';
 import { useEffect, useRef, useState } from 'react';
 import { randomNumbers } from './helpers';
+import ExchangeForm from './components/ExchangeForm';
+import ExchangeRateForm from './components/ExchangeRateForm';
+import History from './components/History';
 
 
 function App() {
@@ -32,8 +34,6 @@ function App() {
 
   const exchangeAmount = () => {
     const exchangeRate = overrideFxRate || fxRate
-    console.log(".>>> euro amount", mainInputRef.current.value)
-    console.log(">>>>>> fx rate", exchangeRate, isEuro);
     if (isEuro) {
       setUsdAmount(() => mainInputRef.current.value * exchangeRate)
       setEuroAmount(mainInputRef.current.value)
@@ -47,10 +47,6 @@ function App() {
     setIsEuro(prev => !prev)
   }
 
-  const handleOverride = (e) => {
-    setOverrideFxRate(e.target.value)
-  }
-
   const handleFormSumbit = (e) => {
     e.preventDefault();
     setHistory(prevData => [{
@@ -62,83 +58,31 @@ function App() {
   }
 
 
-
   return (
     <div className="container">
 
       {/* Rate Part */}
-      <div className="row">
-        <div className="col-sm-6">
-          <div className="input-group mb-3">
-            <span className="input-group-text">Realtime EURO/USD FX-Rate</span>
-            <input type="number" className="form-control" value={fxRate} disabled />
-          </div>
-        </div>
-        <div className="col-sm-6">
-          <div className="input-group mb-3">
-            <span className="input-group-text">Override EURO/USD FX-Rate</span>
-            <input type="number" className="form-control" value={overrideFxRate} onChange={handleOverride} />
-          </div>
-        </div>
-      </div>
+      <ExchangeRateForm
+        fxRate={fxRate}
+        overrideFxRate={overrideFxRate}
+        setOverrideFxRate={setOverrideFxRate}
+      />
 
 
       {/* Exchange form */}
-
-      <form onSubmit={handleFormSumbit}>
-        <div className="row">
-          <div className="col-sm-5">
-            <div className="input-group mb-3">
-              <span className="input-group-text">{isEuro ? '€' : '$'}</span>
-              <span className="input-group-text">{isEuro ? 'Euro' : 'USD'}</span>
-              <input type="number" className="form-control" ref={mainInputRef} value={isEuro ? euroAmount : usdAmount} onChange={exchangeAmount} />
-            </div>
-          </div>
-          <div className="d-flex col-sm-2 justify-content-center align-items-center" id="exchange_icon" onClick={handleSwitch}>
-            <img src={exchangeIcon} className="img-fluid" alt="Switch" />
-          </div>
-          <div className="col-sm-5">
-            <div className="input-group mb-3">
-              <span className="input-group-text">{!isEuro ? '€' : '$'}</span>
-              <span className="input-group-text">{!isEuro ? 'Euro' : 'USD'}</span>
-              <input type="number" className="form-control" value={!isEuro ? euroAmount : usdAmount} disabled />
-            </div>
-          </div>
-        </div>
-        <button type="submit" className="btn btn-lg btn-outline-secondary" disabled={euroAmount === 0 || usdAmount === 0 }>Save to History</button>
-      </form>
+      <ExchangeForm
+        handleFormSumbit={handleFormSumbit}
+        mainInputRef={mainInputRef}
+        isEuro={isEuro}
+        euroAmount={euroAmount}
+        usdAmount={usdAmount}
+        exchangeAmount={exchangeAmount}
+        handleSwitch={handleSwitch}
+      />
 
 
-      {history.length > 0 ?
-
-        <>
-          <hr />
-          {/* History */}
-          <div className="table-responsive">
-            <table className="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>FX Rate</th>
-                  <th>Override</th>
-                  <th>Amount</th>
-                  <th>Converted Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                {history.map((data, index) => (
-                  <tr key={index}>
-                    <td>{data.fxRate}</td>
-                    <td>{data.overrideFxRate ? "Yes" : "No"}</td>
-                    <td>{data.amount}</td>
-                    <td>{data.convertedAmount}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </>
-
-        : null}
+      {/* History Part */}
+      {history.length > 0 ? <History history={history} /> : null}
 
     </div>
   );
