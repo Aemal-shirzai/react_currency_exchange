@@ -1,23 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import { randomNumbers } from './helpers';
 
 function App() {
+  const [fxRate, setFxRate] = useState(() => 1.1)
+
+  useEffect(() => {
+
+    const updateFxRate = () => {
+      setFxRate(prev => prev - randomNumbers(0.5, -0.5))
+    } 
+
+    const interval = setInterval(updateFxRate, 3000);
+
+    return () => {
+      clearInterval(interval);
+    }
+
+  }, []);
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+        { fxRate }
     </div>
   );
 }
