@@ -4,11 +4,12 @@ import { randomNumbers } from './helpers';
 import ExchangeForm from './components/ExchangeForm';
 import ExchangeRateForm from './components/ExchangeRateForm';
 import History from './components/History';
-import { Box, Container, Divider, Heading } from '@chakra-ui/react';
+import { Box, Container, Divider, Heading, useToast } from '@chakra-ui/react';
 
 
 function App() {
   const mainInputRef = useRef(null)
+  const toast = useToast()
   const [fxRate, setFxRate] = useState(() => 1.1)
   const [usdAmount, setUsdAmount] = useState(0)
   const [euroAmount, setEuroAmount] = useState(0)
@@ -30,6 +31,13 @@ function App() {
   useEffect(() => {
     if (overrideFxRate && (Math.abs(overrideFxRate - fxRate) / fxRate) * 100 > 200) {
       setOverrideFxRate('')
+      toast({
+        title: 'Override Amount Reset',
+        description: "Deactivating the override on the fx rate. There is a 2% difference with the real-time fx rate",
+        status: 'info',
+        duration: 5000,
+        isClosable: true,
+      })
     }
   }, [fxRate, overrideFxRate])
 
