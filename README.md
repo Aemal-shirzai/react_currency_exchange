@@ -33,7 +33,7 @@ This feature involves displaying a table on the page that shows the historical d
 ## Technologies Used
 
 - React
-- Bootstrap 5
+- ChakraUI
 
 ## Acknowledgements
 

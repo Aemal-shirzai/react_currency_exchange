@@ -4,10 +4,12 @@ import { randomNumbers } from './helpers';
 import ExchangeForm from './components/ExchangeForm';
 import ExchangeRateForm from './components/ExchangeRateForm';
 import History from './components/History';
+import { Box, Container, Divider, Heading, useToast } from '@chakra-ui/react';
 
 
 function App() {
   const mainInputRef = useRef(null)
+  const toast = useToast()
   const [fxRate, setFxRate] = useState(() => 1.1)
   const [usdAmount, setUsdAmount] = useState(0)
   const [euroAmount, setEuroAmount] = useState(0)
@@ -29,6 +31,13 @@ function App() {
   useEffect(() => {
     if (overrideFxRate && (Math.abs(overrideFxRate - fxRate) / fxRate) * 100 > 200) {
       setOverrideFxRate('')
+      toast({
+        title: 'Override Amount Reset',
+        description: "Deactivating the override on the fx rate. There is a 2% difference with the real-time fx rate",
+        status: 'info',
+        duration: 5000,
+        isClosable: true,
+      })
     }
   }, [fxRate, overrideFxRate])
 
@@ -60,43 +69,41 @@ function App() {
 
   return (
     <>
-      <header className="container-fluid bg-dark py-3 text-white mb-4">
-        <h1 className="text-white text-center mb-0">FX Rate Converter</h1>
-      </header>
-
-      <div className="container">
-        <div className='row justify-content-center'>
-          <div class="col-sm-10 p-sm-5">
-
-            {/* Rate Part */}
-            <ExchangeRateForm
-              fxRate={fxRate}
-              overrideFxRate={overrideFxRate}
-              setOverrideFxRate={setOverrideFxRate}
-            />
-
-            <hr />
+      <Box as="header" color="white" backgroundColor="black" py="15px" textAlign="center">
+        <Heading>FX Rate Converter</Heading>
+      </Box>
 
 
-            {/* Exchange form */}
-            <ExchangeForm
-              handleFormSumbit={handleFormSumbit}
-              mainInputRef={mainInputRef}
-              isEuro={isEuro}
-              euroAmount={euroAmount}
-              usdAmount={usdAmount}
-              exchangeAmount={exchangeAmount}
-              handleSwitch={handleSwitch}
-            />
+      <Container mt="50px" maxW="container.xl" centerContent>
 
-            <hr />
+        {/* Rate Part */}
+        <ExchangeRateForm
+          fxRate={fxRate}
+          overrideFxRate={overrideFxRate}
+          setOverrideFxRate={setOverrideFxRate}
+        />
 
-            {/* History Part */}
-            {history.length > 0 ? <History history={history} /> : null}
+        <Divider my="20px" />
 
-          </div>
-        </div>
-      </div>
+
+        {/* Exchange form */}
+        <ExchangeForm
+          handleFormSumbit={handleFormSumbit}
+          mainInputRef={mainInputRef}
+          isEuro={isEuro}
+          euroAmount={euroAmount}
+          usdAmount={usdAmount}
+          exchangeAmount={exchangeAmount}
+          handleSwitch={handleSwitch}
+        />
+
+        <Divider my="20px" />
+
+        {/* History Part */}
+        {history.length > 0 ? <History history={history} /> : null}
+
+      </Container>
+
     </>
   );
 }

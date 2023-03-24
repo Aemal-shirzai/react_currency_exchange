@@ -1,21 +1,27 @@
+import { Grid, GridItem, Input, InputGroup, InputLeftAddon, Stack } from "@chakra-ui/react";
+
 const ExchangeRateForm = ({ fxRate, overrideFxRate, setOverrideFxRate }) => {
     return (
 
         <>
-            <div className="row">
-                <div className="col-sm-6">
-                    <div className="input-group mb-sm-3">
-                        <span className="input-group-text">Real-time FX-Rate</span>
-                        <input type="number" className="form-control" value={fxRate} disabled />
-                    </div>
-                </div>
-                <div className="col-sm-6">
-                    <div className="input-group mb-3">
-                        <span className="input-group-text">Override FX-Rate</span>
-                        <input placeholder="Custom Rate" type="number" className="form-control" value={overrideFxRate} onChange={(e) => setOverrideFxRate(e.target.value)} />
-                    </div>
-                </div>
-            </div>
+            <Grid templateColumns={{ base: "1fr", md: "1fr 1fr", lg: "1fr 1fr" }} gap={1} >
+                <GridItem>
+                    <Stack spacing={4}>
+                        <InputGroup size="lg">
+                            <InputLeftAddon children='Real-time FX-Rate' />
+                            <Input type='number' value={fxRate} disabled />
+                        </InputGroup>
+                    </Stack>
+                </GridItem>
+                <GridItem>
+                    <Stack spacing={4}>
+                        <InputGroup size="lg">
+                            <InputLeftAddon children='Override FX-Rate' />
+                            <Input type='number' placeholder='Custom Rate' value={overrideFxRate} onChange={(e) => setOverrideFxRate(e.target.value)} />
+                        </InputGroup>
+                    </Stack>
+                </GridItem>
+            </Grid>
         </>
     );
 }
