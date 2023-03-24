@@ -76,32 +76,32 @@ function App() {
 
       <Container mt="50px" maxW="container.xl" centerContent>
 
-            {/* Rate Part */}
-            <ExchangeRateForm
-              fxRate={fxRate}
-              overrideFxRate={overrideFxRate}
-              setOverrideFxRate={setOverrideFxRate}
-            />
-            
-            <Divider  my="20px" />
+        {/* Rate Part */}
+        <ExchangeRateForm
+          fxRate={fxRate}
+          overrideFxRate={overrideFxRate}
+          setOverrideFxRate={setOverrideFxRate}
+        />
+
+        <Divider my="20px" />
 
 
-            {/* Exchange form */}
-            <ExchangeForm
-              handleFormSumbit={handleFormSumbit}
-              mainInputRef={mainInputRef}
-              isEuro={isEuro}
-              euroAmount={euroAmount}
-              usdAmount={usdAmount}
-              exchangeAmount={exchangeAmount}
-              handleSwitch={handleSwitch}
-            />
+        {/* Exchange form */}
+        <ExchangeForm
+          handleFormSumbit={handleFormSumbit}
+          mainInputRef={mainInputRef}
+          isEuro={isEuro}
+          euroAmount={euroAmount}
+          usdAmount={usdAmount}
+          exchangeAmount={exchangeAmount}
+          handleSwitch={handleSwitch}
+        />
 
-            <Divider  my="20px" />
+        <Divider my="20px" />
 
-            {/* History Part */}
-            {history.length > 0 ? <History history={history} /> : null}
-          
+        {/* History Part */}
+        {history.length > 0 ? <History history={history} /> : null}
+
       </Container>
 
     </>

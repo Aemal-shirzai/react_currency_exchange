@@ -20,7 +20,6 @@ const History = ({ history }) => {
                                 <Td>{data.overrideFxRate ? "Yes" : "No"}</Td>
                                 <Td>{data.amount}</Td>
                                 <Td>{data.convertedAmount}</Td>
-                                
                             </Tr>
                         ))}
                     </Tbody>
