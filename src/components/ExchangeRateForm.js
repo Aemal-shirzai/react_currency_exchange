@@ -1,27 +1,27 @@
-import { Box, Flex, Input, InputGroup, InputLeftAddon, Stack } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Input, InputGroup, InputLeftAddon, Stack } from "@chakra-ui/react";
 
 const ExchangeRateForm = ({ fxRate, overrideFxRate, setOverrideFxRate }) => {
     return (
 
         <>
-            <Flex wrap="wrap">
-                <Box>
+            <Grid templateColumns={{ base: "1fr", md: "1fr 1fr", lg: "1fr 1fr" }} gap={1} >
+                <GridItem>
                     <Stack spacing={4}>
                         <InputGroup>
                             <InputLeftAddon children='Real-time FX-Rate' />
-                            <Input type='number' value={fxRate} disabled/>
+                            <Input type='number' value={fxRate} disabled />
                         </InputGroup>
                     </Stack>
-                </Box>
-                <Box>
+                </GridItem>
+                <GridItem>
                     <Stack spacing={4}>
                         <InputGroup>
                             <InputLeftAddon children='Override FX-Rate' />
-                            <Input type='number' placeholder='Custom Rate' value={overrideFxRate} onChange={(e) => setOverrideFxRate(e.target.value)}/>
+                            <Input type='number' placeholder='Custom Rate' value={overrideFxRate} onChange={(e) => setOverrideFxRate(e.target.value)} />
                         </InputGroup>
                     </Stack>
-                </Box>
-            </Flex>
+                </GridItem>
+            </Grid>
         </>
     );
 }
