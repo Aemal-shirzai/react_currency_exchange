@@ -1,29 +1,37 @@
+import { Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
+
 const History = ({ history }) => {
     return (
         <>
-            <hr />
-            <div className="table-responsive">
-                <table className="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>FX Rate</th>
-                            <th>Override</th>
-                            <th>Amount</th>
-                            <th>Converted Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <TableContainer width="100%">
+                <Table size='sm'>
+                    <Thead>
+                        <Tr>
+                            <Th>FX Rate</Th>
+                            <Th>Override</Th>
+                            <Th>Amount</Th>
+                            <Th>Converted Amount</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
                         {history.map((data, index) => (
-                            <tr key={index}>
-                                <td>{data.fxRate}</td>
-                                <td>{data.overrideFxRate ? "Yes" : "No"}</td>
-                                <td>{data.amount}</td>
-                                <td>{data.convertedAmount}</td>
-                            </tr>
+                            <Tr key={index}>
+                                <Td>{data.fxRate}</Td>
+                                <Td>{data.overrideFxRate ? "Yes" : "No"}</Td>
+                                <Td>{data.amount}</Td>
+                                <Td>{data.convertedAmount}</Td>
+                                
+                            </Tr>
                         ))}
-                    </tbody>
-                </table>
-            </div>
+                    </Tbody>
+                    <Tfoot>
+                        <Tr>
+                            <Th>Total</Th>
+                            <Th isNumeric>5</Th>
+                        </Tr>
+                    </Tfoot>
+                </Table>
+            </TableContainer>
         </>
     );
 }
