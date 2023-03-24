@@ -7,7 +7,7 @@ const ExchangeRateForm = ({ fxRate, overrideFxRate, setOverrideFxRate }) => {
             <Grid templateColumns={{ base: "1fr", md: "1fr 1fr", lg: "1fr 1fr" }} gap={1} >
                 <GridItem>
                     <Stack spacing={4}>
-                        <InputGroup>
+                        <InputGroup size="lg">
                             <InputLeftAddon children='Real-time FX-Rate' />
                             <Input type='number' value={fxRate} disabled />
                         </InputGroup>
@@ -15,7 +15,7 @@ const ExchangeRateForm = ({ fxRate, overrideFxRate, setOverrideFxRate }) => {
                 </GridItem>
                 <GridItem>
                     <Stack spacing={4}>
-                        <InputGroup>
+                        <InputGroup size="lg">
                             <InputLeftAddon children='Override FX-Rate' />
                             <Input type='number' placeholder='Custom Rate' value={overrideFxRate} onChange={(e) => setOverrideFxRate(e.target.value)} />
                         </InputGroup>

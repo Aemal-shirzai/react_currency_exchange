@@ -67,7 +67,6 @@ function App() {
 
 
       <Container mt="50px" maxW="container.xl" centerContent>
-        {/* <Flex justifyContent="center"> */}
 
             {/* Rate Part */}
             <ExchangeRateForm
@@ -95,7 +94,6 @@ function App() {
             {/* History Part */}
             {history.length > 0 ? <History history={history} /> : null}
           
-        {/* </Flex> */}
       </Container>
 
     </>

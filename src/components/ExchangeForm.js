@@ -6,9 +6,9 @@ const ExchangeForm = ({ handleFormSumbit, mainInputRef, isEuro, euroAmount, usdA
     return (
 
         <form onSubmit={handleFormSumbit}>
-            <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} gap={3}>
+            <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} gap={2}>
                 <GridItem>
-                    <InputGroup>
+                    <InputGroup size="lg">
                         <Input type="number" ref={mainInputRef} value={isEuro ? euroAmount : usdAmount} onChange={exchangeAmount} />
                         <InputRightElement children={isEuro ? '€' : '$'} />
                     </InputGroup>
@@ -19,7 +19,7 @@ const ExchangeForm = ({ handleFormSumbit, mainInputRef, isEuro, euroAmount, usdA
                     </Flex>
                 </GridItem>
                 <GridItem>
-                    <InputGroup>
+                    <InputGroup size="lg">
                         <Input type="number" value={!isEuro ? euroAmount : usdAmount} disabled />
                         <InputRightElement children={!isEuro ? '€' : '$'} />
                     </InputGroup>
