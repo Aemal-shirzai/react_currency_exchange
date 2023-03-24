@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, GridItem, Input, InputGroup, InputLeftAddon, Stack } from "@chakra-ui/react";
+import { Grid, GridItem, Input, InputGroup, InputLeftAddon, Stack } from "@chakra-ui/react";
 
 const ExchangeRateForm = ({ fxRate, overrideFxRate, setOverrideFxRate }) => {
     return (

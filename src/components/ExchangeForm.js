@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, GridItem, Input, InputGroup, InputLeftElement, InputRightElement, SimpleGrid, Stack } from '@chakra-ui/react';
+import { Button, Flex, Grid, GridItem, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import exchangeIcon from '../assets/exchange.png';
 
 const ExchangeForm = ({ handleFormSumbit, mainInputRef, isEuro, euroAmount, usdAmount, exchangeAmount, handleSwitch }) => {
@@ -6,7 +6,7 @@ const ExchangeForm = ({ handleFormSumbit, mainInputRef, isEuro, euroAmount, usdA
     return (
 
         <form onSubmit={handleFormSumbit}>
-            <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} gap={0}>
+            <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} gap={3}>
                 <GridItem>
                     <InputGroup>
                         <Input type="number" ref={mainInputRef} value={isEuro ? euroAmount : usdAmount} onChange={exchangeAmount} />
@@ -25,7 +25,10 @@ const ExchangeForm = ({ handleFormSumbit, mainInputRef, isEuro, euroAmount, usdA
                     </InputGroup>
                 </GridItem>
             </Grid>
-            <button type="submit" className="btn btn-lg btn-outline-secondary" disabled={euroAmount === 0 || usdAmount === 0}>Save to History</button>
+
+            <Button type="submit" mt="15px" colorScheme='blue' variant='outline' disabled={euroAmount === 0 || usdAmount === 0}>
+                Save to History
+            </Button>
         </form>
 
     );

@@ -4,7 +4,7 @@ import { randomNumbers } from './helpers';
 import ExchangeForm from './components/ExchangeForm';
 import ExchangeRateForm from './components/ExchangeRateForm';
 import History from './components/History';
-import { Box, Container, Divider, Flex, Heading } from '@chakra-ui/react';
+import { Box, Container, Divider, Heading } from '@chakra-ui/react';
 
 
 function App() {
@@ -76,7 +76,7 @@ function App() {
               setOverrideFxRate={setOverrideFxRate}
             />
             
-            <Divider  my="20px"/>
+            <Divider  my="20px" />
 
 
             {/* Exchange form */}
@@ -90,10 +90,10 @@ function App() {
               handleSwitch={handleSwitch}
             />
 
-            <Divider />
+            <Divider  my="20px" />
 
             {/* History Part */}
-            {/* {history.length > 0 ? <History history={history} /> : null} */}
+            {history.length > 0 ? <History history={history} /> : null}
           
         {/* </Flex> */}
       </Container>
