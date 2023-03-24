@@ -4,6 +4,7 @@ import { randomNumbers } from './helpers';
 import ExchangeForm from './components/ExchangeForm';
 import ExchangeRateForm from './components/ExchangeRateForm';
 import History from './components/History';
+import { Box, Container, Divider, Flex, Heading } from '@chakra-ui/react';
 
 
 function App() {
@@ -60,13 +61,13 @@ function App() {
 
   return (
     <>
-      <header className="container-fluid bg-dark py-3 text-white mb-4">
-        <h1 className="text-white text-center mb-0">FX Rate Converter</h1>
-      </header>
+      <Box as="header" color="white" backgroundColor="black" py="15px" textAlign="center">
+        <Heading>FX Rate Converter</Heading>
+      </Box>
 
-      <div className="container">
-        <div className='row justify-content-center'>
-          <div class="col-sm-10 p-sm-5">
+
+      <Container mt="50px" maxW="container.xl" centerContent>
+        {/* <Flex justifyContent="center"> */}
 
             {/* Rate Part */}
             <ExchangeRateForm
@@ -74,8 +75,8 @@ function App() {
               overrideFxRate={overrideFxRate}
               setOverrideFxRate={setOverrideFxRate}
             />
-
-            <hr />
+            
+            <Divider  my="20px"/>
 
 
             {/* Exchange form */}
@@ -89,14 +90,14 @@ function App() {
               handleSwitch={handleSwitch}
             />
 
-            <hr />
+            <Divider />
 
             {/* History Part */}
-            {history.length > 0 ? <History history={history} /> : null}
+            {/* {history.length > 0 ? <History history={history} /> : null} */}
+          
+        {/* </Flex> */}
+      </Container>
 
-          </div>
-        </div>
-      </div>
     </>
   );
 }
