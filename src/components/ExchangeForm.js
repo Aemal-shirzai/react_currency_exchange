@@ -1,7 +1,17 @@
 import { Button, Flex, Grid, GridItem, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
+import { useRef, useState } from 'react';
 import exchangeIcon from '../assets/exchange.png';
 
 const ExchangeForm = ({ handleFormSumbit, mainInputRef, isEuro, euroAmount, usdAmount, exchangeAmount, handleSwitch }) => {
+    const imgRef = useRef(null)
+    const [oldDegree, setOldDegree] = useState(0)
+
+    const onClickSwitch = () => {
+        const degree =  !imgRef.current.style.transform ? 180 : oldDegree + 180
+        imgRef.current.style.transform = `rotate(${degree}deg)`
+        setOldDegree(degree)
+        handleSwitch()
+    }
 
     return (
 
@@ -14,8 +24,8 @@ const ExchangeForm = ({ handleFormSumbit, mainInputRef, isEuro, euroAmount, usdA
                     </InputGroup>
                 </GridItem>
                 <GridItem id="exchange_icon">
-                    <Flex onClick={handleSwitch} height="100%" justifyContent="center" align="center">
-                        <img src={exchangeIcon} className="img-fluid" alt="Switch" />
+                    <Flex onClick={onClickSwitch} height="100%" justifyContent="center" align="center">
+                        <img style={{ transitionDuration: ".8s" }} ref={imgRef} src={exchangeIcon} className="img-fluid" alt="Switch" />
                     </Flex>
                 </GridItem>
                 <GridItem>
