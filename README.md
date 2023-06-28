@@ -1,4 +1,4 @@
-# React SPA (Single Page Application) for FX Rate Conversion
+# React SPA (Single Page Application) for FX Rate Conversion.
 
 This is a single page application built using React that allows users to convert an amount from EUR to USD or vice versa based on the current FX rate. It also allows users to override the FX rate and provides a historical table of the last 5 conversions.
 
